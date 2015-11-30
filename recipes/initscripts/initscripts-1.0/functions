@@ -68,24 +68,24 @@ status() {
 }
 
 success() {
-    echo -n -e "${BRACKET}[${SUCCESS}  OK  ${BRACKET}]${NORMAL}"
+    echo -n -e "[  OK  ]"
     return 0
 }
 
 failure() {
     local rc=$*
-    echo -n -e "${BRACKET}[${FAILURE} FAIL ${BRACKET}]${NORMAL}"
+    echo -n -e "[ FAIL ]"
     return $rc
 }
 
 warning() {
     local rc=$*
-    echo -n -e "${BRACKET}[${WARNING} WARN ${BRACKET}]${NORMAL}"
+    echo -n -e "[ WARN ]"
     return $rc
 }
 
 passed() {
     local rc=$*
-    echo -n -e "${BRACKET}[${SUCCESS} PASS ${BRACKET}]${NORMAL}"
+    echo -n -e "[ PASS ]"
     return $rc
 }
