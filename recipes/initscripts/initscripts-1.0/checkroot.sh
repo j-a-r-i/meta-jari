@@ -23,25 +23,9 @@ exec 9< /etc/fstab
 rootmode=rw
 rootopts=rw
 rootcheck=$ENABLE_ROOTFS_FSCK
-swap_on_md=no
 devfs=
 while read fs mnt type opts dump pass junk <&9
 do
-	case "$fs" in
-		""|\#*)
-			continue;
-			;;
-		/dev/md*)
-			# Swap on md device.
-			test "$type" = swap && swap_on_md=yes
-			;;
-		/dev/*)
-			;;
-		*)
-			# Might be a swapfile.
-			test "$type" = swap && swap_on_md=yes
-			;;
-	esac
 	test "$type" = devfs && devfs="$fs"
 	test "$mnt" != / && continue
 	rootopts="$opts"
@@ -63,13 +47,6 @@ if [ "$rootmode" = "ro" -a "$ROOTFS_READ_ONLY" = "no" ] || \
 	echo ""
 fi
 
-
-#
-# Activate the swap device(s) in /etc/fstab. This needs to be done
-# before fsck, since fsck can be quite memory-hungry.
-#
-test "$VERBOSE" != no && echo "Activating swap"
-swapon -a 2> /dev/null
 
 #
 # Check the root filesystem.
@@ -96,13 +73,8 @@ else
     else
 	fix="-a"
     fi
-    spinner="-C"
-    case "$TERM" in
-        dumb|network|unknown|"") spinner="" ;;
-    esac
-    test `uname -m` = s390 && spinner="" # This should go away
     test "$VERBOSE" != no && echo "Checking root filesystem..."
-    fsck $spinner $force $fix /
+    fsck -C $force $fix /
     #
     # If there was a failure, drop into single-user mode.
     #
