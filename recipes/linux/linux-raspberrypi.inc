@@ -36,7 +36,7 @@ python __anonymous () {
 }
 
 do_install_prepend() {
-    install -d ${D}/lib/firmware
+    #install -d ${D}/lib/firmware
 }
 
 do_deploy_append() {
