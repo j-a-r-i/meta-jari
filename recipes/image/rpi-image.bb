@@ -3,5 +3,15 @@ include recipes-core/images/core-image-minimal.bb
 
 # Include modules in rootfs
 IMAGE_INSTALL += " \
-	kernel-modules \
+	mosquitto \
+	dropbear \
+	redis \
+	redis-plus-plus \
+	sqlite3 \
+	htop \
 	"
+
+# influxdb
+# kernel-modules
+# dotnet-core
+# aspnet-core
