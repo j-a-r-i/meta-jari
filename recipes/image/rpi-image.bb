@@ -9,8 +9,10 @@ IMAGE_INSTALL += " \
 	redis-plus-plus \
 	sqlite3 \
 	htop \
+	yaha \
 	"
 
+#	yaha \
 # influxdb
 # kernel-modules
 # dotnet-core
