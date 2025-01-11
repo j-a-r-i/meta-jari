@@ -1,25 +1,38 @@
 # Base this image on core-image-minimal
 include recipes-core/images/core-image-minimal.bb
 
+FILESEXTRAPATHS:prepend := "${THISDIR}/${PN}:"
+
 # Include modules in rootfs
 IMAGE_INSTALL += " \
 	mosquitto \
-	python3-paho-mqtt \
 	dropbear \
-	redis \
-	redis-plus-plus \
-	python3-redis \
-	sqlite3 \
+	openssh-sftp-server \
+	gdbserver \
+	nano \
+	wpa-supplicant linux-firmware-bcm43455 \
+	nodejs \
 	htop \
-	yaha \
-	iptables \
-	sudo \
-	"
+	git \
+	screen tmux \
+	samba-server \
+	kernel-module-brcmfmac \
+	kernel-module-brcmfmac-wcc \
+	kernel-module-brcmutil \
+	glibc-utils glibc-charmap-utf-8 \
+"
 
+#	sudo \
 #	yaha \
-# influxdb
+#	nginx \
+#	llamacpp \
+#	libmicrohttpd \
+#	dotnet-core \
+#	vsdbg \
+#	dropbear \
+#	redis \
+#	redis-plus-plus \
 # kernel-modules
-# dotnet-core
 # aspnet-core
 
 inherit extrausers
