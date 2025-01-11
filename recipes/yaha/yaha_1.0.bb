@@ -9,5 +9,5 @@ S = "${WORKDIR}/git"
 
 inherit cmake
 
-DEPENDS = "mosquitto sqlite3 nlohmann-json"
+DEPENDS = "mosquitto sqlite3 nlohmann-json curl fmt spdlog paho-mqtt-c"
 EXTRA_OECMAKE = "-DYOCTO=YES"
